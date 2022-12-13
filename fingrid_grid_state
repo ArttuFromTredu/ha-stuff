@@ -1,0 +1,25 @@
+sensor:
+  - platform: rest
+    unique_id: fingrid_grid_state
+    name: "Sähköverkon tilanne"
+    icon: mdi:transmission-tower
+    resource: https://api.fingrid.fi/v1/variable/event/json/209
+    headers:
+      x-api-key: "<INSERT_YOUR_API_KEY_HERE>"
+      Content-Type: application/json
+    json_attributes:
+      - value
+    force_update: true
+    scan_interval: 90
+    value_template: >
+        {% if value_json[0].value == 1 %}
+        Vihreä
+        {% elif value_json[0].value == 2 %}
+        Keltainen
+        {% elif value_json[0].value == 3 %}
+        Punainen
+        {% elif value_json[0].value == 4 %}
+        Musta
+        {% elif value_json[0].value == 5 %}
+        Sininen
+        {% endif %}
