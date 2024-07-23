@@ -1,0 +1,21 @@
+# Dynamic Light Temperature
+{% set sun_elevation = state_attr('sun.sun', 'elevation') | float %}
+{% set min_mired = 250 %}
+{% set max_mired = 454 %}
+{% if sun_elevation <= 0 %}
+  {{ max_mired }}
+{% elif sun_elevation >= 45 %}
+  {{ min_mired }}
+{% else %}
+  {{ ((1 - (sun_elevation / 45)) * (max_mired - min_mired) + min_mired) | round(0) }}
+{% endif %}
+
+# Dynamic Light Brightness
+{% set sun_elevation = state_attr('sun.sun', 'elevation') | float %}
+{% if sun_elevation <= 0 %}
+  1
+{% elif sun_elevation >= 45 %}
+  100
+{% else %}
+  {{ ((sun_elevation / 45) * 99) + 1 | round(0) }}
+{% endif %}
