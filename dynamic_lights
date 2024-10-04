@@ -12,10 +12,9 @@
 
 # Dynamic Light Brightness
 {% set sun_elevation = state_attr('sun.sun', 'elevation') | float %}
-{% if sun_elevation <= 0 %}
-  1
-{% elif sun_elevation >= 45 %}
-  100
-{% else %}
-  {{ ((sun_elevation / 45) * 99) + 1 | round(0) }}
-{% endif %}
+{% set offset = states('input_number.dynamic_light_brightness_offset') | float %}
+{% set brightness = 
+    (1 if sun_elevation <= 0 else 
+    100 if sun_elevation >= 45 else 
+    ((sun_elevation / 45) * 99) + 1) + offset %}
+{{ [1, [brightness, 100] | min] | max | round(0) }}
