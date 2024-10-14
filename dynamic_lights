@@ -1,20 +1,33 @@
-# Dynamic Light Temperature
+# Sun Max Elevation (sensor.sun_max_elevation)
+{% set day_of_year = now().timetuple().tm_yday %}
+{% set max_value = 50 %}
+{% set min_value = 5 %}
+{% set amplitude = (max_value - min_value) / 2 %}
+{% set offset = (max_value + min_value) / 2 %}
+{% set days_in_year = 365 %}
+{% set peak_day = 172 %}
+{% set radians_per_day = 2 * pi / days_in_year %}
+{% set value = amplitude * cos(radians_per_day * (day_of_year - peak_day)) + offset %}
+{{ value | round(2) }}
+
+# Dynamic Light Brightness (sensor.dynamic_light_brightness)
 {% set sun_elevation = state_attr('sun.sun', 'elevation') | float %}
-{% set min_mired = 250 %}
-{% set max_mired = 454 %}
+{% set max_elevation = states('sensor.sun_max_elevation') | float %}
 {% if sun_elevation <= 0 %}
-  {{ max_mired }}
-{% elif sun_elevation >= 45 %}
-  {{ min_mired }}
+  10
+{% elif sun_elevation >= max_elevation %}
+  100
 {% else %}
-  {{ ((1 - (sun_elevation / 45)) * (max_mired - min_mired) + min_mired) | round(0) }}
+  {{ ((sun_elevation / max_elevation) * 90) + 10 | round(0) }}
 {% endif %}
 
-# Dynamic Light Brightness
+# Dynamic Light Temperature (sensor.dynamic_light.temperature)
 {% set sun_elevation = state_attr('sun.sun', 'elevation') | float %}
-{% set offset = states('input_number.dynamic_light_brightness_offset') | float %}
-{% set brightness = 
-    (1 if sun_elevation <= 0 else 
-    100 if sun_elevation >= 45 else 
-    ((sun_elevation / 45) * 99) + 1) + offset %}
-{{ [1, [brightness, 100] | min] | max | round(0) }}
+{% set max_elevation = states('sensor.sun_max_elevation') | float %}
+{% if sun_elevation <= 0 %}
+  250
+{% elif sun_elevation >= max_elevation %}
+  454
+{% else %}
+  {{ ((sun_elevation / max_elevation) * 204) + 250 | round(0) }}
+{% endif %}
