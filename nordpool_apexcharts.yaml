@@ -1,0 +1,68 @@
+type: custom:apexcharts-card
+apex_config:
+  chart:
+    height: 400px
+  legend:
+    show: false
+experimental:
+  color_threshold: true
+all_series_config:
+  color_threshold:
+    - value: 2
+      color: 0fff00
+    - value: 5
+      color: 0bb303
+    - value: 10
+      color: ff8b55
+    - value: 15
+      color: ffa200
+    - value: 20
+      color: ff0000
+hours_12: false
+header:
+  show: true
+  title: Electricity prices
+  show_states: true
+  floating: false
+  colorize_states: true
+now:
+  show: true
+  color: "#ff0000"
+  label: Now
+graph_span: 24h
+span:
+  start: hour
+yaxis:
+  - decimals: 2
+    apex_config:
+      tickAmount: 5
+series:
+  - entity: sensor.nordpool_kwh_fi_eur_3_10_0255
+    name: Today
+    unit: c/kWh
+    data_generator: |
+      return entity.attributes.raw_today.map((entry) => {
+        return [new Date(entry.start), entry.value];
+      });
+    type: column
+    show:
+      legend_value: false
+      in_header: raw
+      header_color_threshold: true
+    extend_to: end
+  - entity: sensor.nordpool_kwh_fi_eur_3_10_0255
+    name: Tomorrow
+    unit: c/kWh
+    data_generator: |
+      return entity.attributes.raw_tomorrow.map((entry) => {
+        return [new Date(entry.start), entry.value];
+      });
+    type: column
+    show:
+      legend_value: false
+      in_header: false
+card_mod:
+  style: |
+    ha-card {
+      padding: 10px 10px 0px;
+    }
