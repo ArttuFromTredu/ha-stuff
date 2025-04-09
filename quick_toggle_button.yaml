@@ -1,0 +1,38 @@
+type: custom:button-card
+entity: fan.fan
+icon: mdi:coffee-maker
+show_name: false
+show_state: false
+tap_action:
+  action: toggle
+styles:
+  card:
+    - border-radius: 30px
+    - border: none
+    - background-color: rgba(150, 75, 0, 0.1)
+    - padding: 12px
+    - width: 80px
+    - height: 80px
+    - box-shadow: none
+    - display: flex
+    - align-items: center
+    - justify-content: center
+  icon:
+    - width: 32px
+    - height: 32px
+    - color: rgba(111, 78, 55, 1)
+state:
+  - value: "on"
+    styles:
+      icon:
+        - color: rgba(111, 78, 55, 1)
+        - animation: pulse 2s ease-in-out infinite
+extra_styles: |
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
