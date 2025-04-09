@@ -9,7 +9,7 @@ styles:
   card:
     - border-radius: 30px
     - border: none
-    - background-color: rgba(150, 75, 0, 0.1)
+    - background-color: var(--card-background-color)
     - padding: 12px
     - width: 80px
     - height: 80px
@@ -20,10 +20,11 @@ styles:
   icon:
     - width: 32px
     - height: 32px
-    - color: rgba(111, 78, 55, 1)
 state:
   - value: "on"
     styles:
+      card:
+        - background-color: rgba(111, 78, 55, 0.1)
       icon:
         - color: rgba(111, 78, 55, 1)
         - animation: pulse 2s ease-in-out infinite
