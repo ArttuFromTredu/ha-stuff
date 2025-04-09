@@ -9,15 +9,15 @@ experimental:
 all_series_config:
   color_threshold:
     - value: 2
-      color: 0fff00
+      color: b3d495
     - value: 5
-      color: 0bb303
+      color: d5d667
     - value: 10
-      color: ff8b55
+      color: f6d738
     - value: 15
-      color: ffa200
+      color: ef8d3a
     - value: 20
-      color: ff0000
+      color: e8423c
 hours_12: false
 header:
   show: true
@@ -65,4 +65,4 @@ card_mod:
   style: |
     ha-card {
       padding: 10px 10px 0px;
-    }
+    }    
