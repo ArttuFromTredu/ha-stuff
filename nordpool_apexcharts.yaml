@@ -45,6 +45,7 @@ series:
         return [new Date(entry.start), entry.value];
       });
     type: column
+    float_precision: 2
     show:
       legend_value: false
       in_header: raw
@@ -58,6 +59,7 @@ series:
         return [new Date(entry.start), entry.value];
       });
     type: column
+    float_precision: 2
     show:
       legend_value: false
       in_header: false
