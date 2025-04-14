@@ -1,0 +1,225 @@
+type: custom:button-card
+name: Living Room
+entity: sensor.living_room_sensor_temperature
+icon: mdi:sofa
+show_state: true
+tap_action:
+  action: navigate
+  navigation_path: "#living-room"
+hold_action:
+  action: call-service
+  service: light.toggle
+  target:
+    entity_id: light.living_room_lights
+custom_fields:
+  chip1:
+    card:
+      type: custom:button-card
+      entity: light.warm_bulbs
+      icon: mdi:globe-light-outline
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(255, 111, 97, 0.2)
+          - border: none
+  chip2:
+    card:
+      type: custom:button-card
+      entity: light.floor_lamp
+      icon: mdi:floor-lamp-torchiere-outline
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(76, 175, 80, 0.2)
+          - border: none
+  chip3:
+    card:
+      type: custom:button-card
+      entity: switch.assistant_1_use_wake_word
+      icon: mdi:microphone-message
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(255, 193, 7, 0.2)
+          - border: none
+  chip4:
+    card:
+      type: custom:button-card
+      entity: switch.tv_power
+      icon: mdi:television
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(33, 150, 243, 0.2)
+          - border: none
+  chip5:
+    card:
+      type: custom:button-card
+      entity: switch.sound_system
+      icon: mdi:speaker
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(156, 39, 176, 0.2)
+          - border: none
+  chip6:
+    card:
+      type: custom:button-card
+      entity: fan.fan
+      state:
+        - value: "on"
+          styles:
+            icon:
+              - color: rgba(255, 152, 0, 1)
+              - animation: rotating 2s linear infinite
+      action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(255, 152, 0, 0.2)
+          - border: none
+  chip7:
+    card:
+      type: custom:button-card
+      entity: fan.living_room_fan
+      icon: mdi:toaster
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(96, 125, 139, 0.2)
+          - border: none
+  chip8:
+    card:
+      type: custom:button-card
+      entity: fan.living_room_fan
+      icon: mdi:vacuum
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(63, 81, 181, 0.2)
+          - border: none
+  chip9:
+    card:
+      type: custom:button-card
+      entity: fan.living_room_fan
+      icon: mdi:kettle
+      tap_action:
+        action: toggle
+      show_name: false
+      show_state: false
+      styles:
+        card:
+          - border-radius: 50%
+          - width: 50px
+          - height: 50px
+          - box-shadow: none
+          - background-color: rgba(233, 30, 99, 0.2)
+          - border: none
+styles:
+  grid:
+    - grid-template-areas: |
+        "n chip1 chip2 chip3"
+        "s chip4 chip5 chip6"
+        "i chip7 chip8 chip9"
+    - grid-template-columns: 1fr min-content min-content
+    - grid-template-rows: min-content min-content 1fr
+  card:
+    - padding: 20px 10px 20px 20px
+    - height: 200px
+  img_cell:
+    - justify-content: start
+    - position: absolute
+    - height: 150px
+    - width: 150px
+    - left: 0
+    - bottom: 0
+    - margin: 0 0 -30px -30px
+    - background: rgba(255, 111, 97, 0.2)
+    - border-radius: 100px
+  icon:
+    - position: relative
+    - width: 50px
+    - opacity: 0.7
+  name:
+    - justify-self: start
+    - align-self: start
+    - font-size: 18px
+    - font-weight: 500
+  state:
+    - justify-self: start
+    - align-self: start
+    - font-size: 14px
+    - opacity: 0.7
+  custom_fields:
+    chip1:
+      - margin: 3px
+    chip2:
+      - margin: 3px
+    chip3:
+      - margin: 3px
+    chip4:
+      - margin: 3px
+    chip5:
+      - margin: 3px
+    chip6:
+      - margin: 3px
+    chip7:
+      - margin: 3px
+    chip8:
+      - margin: 3px
+    chip9:
+      - margin: 3px
