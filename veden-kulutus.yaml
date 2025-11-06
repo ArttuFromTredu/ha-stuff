@@ -1,0 +1,41 @@
+esphome:
+  name: veden-kulutus
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# External component
+external_components:
+  - source:
+      type: local
+      path: .
+    components: [water_meter]
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+# Required for water_meter component
+sensor:
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+  
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# Water meter component
+water_meter:
+  sensor_pin: 15  # D15 on ESP32
+  flow_sensor:
+    name: "Hetkellinen kulutus"
+  volume_sensor:
+    name: "Tilavuus"
+  duration_sensor:
+    name: "Aika"
