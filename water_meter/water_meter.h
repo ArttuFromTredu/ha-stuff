@@ -51,7 +51,7 @@ class WaterMeterComponent : public Component {
     uint32_t read_delay_ = 5000;  // delay before first read to get network ready
 
     // PINS
-    const int led_pin_ = LED_BUILTIN;  // onboard LED
+    const int led_pin_ = 2;  // onboard LED (GPIO2 is common for ESP8266/ESP32)
     int sensor_pin_ = 15;  // Default to GPIO 15, configurable from YAML
 
     // Calculation
